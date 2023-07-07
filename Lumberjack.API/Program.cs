@@ -67,17 +67,6 @@ builder.Services.AddAuthentication("Bearer")
             };
         });
 
-/*
-builder.Services.AddAuthorization(options => 
-{
-    options.AddPolicy("MustBelongToApplication", policy =>
-    {
-        policy.RequireAuthenticatedUser();
-        policy.RequireClaim("applicationId", "40923SE2D32");
-    });
-});
-*/
-
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddAuthorization(options =>

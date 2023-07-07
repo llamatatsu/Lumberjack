@@ -28,7 +28,6 @@ namespace Lumberjack.API.Services
         Task<User?> ValidateUserAsync(string userName, int applicationId);
         Task<UserApplicationMap?> GetUserApplicationMapAsync(int userId, int applicationId);
 
-        Task<bool> SaveChangesAsync();
-        
+        Task<bool> SaveChangesAsync();        
     }
 }                      
