@@ -8,6 +8,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Lumberjack.API.Utilities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Azure;
+using Azure.Messaging.ServiceBus;
 
 Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
@@ -47,6 +49,7 @@ builder.Services.AddDbContext<LumberjackDBContext>(
 
 builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<ILumberjackRepository, LumberjackRepository>();
+builder.Services.AddScoped<IForkliftServiceBus, ForkliftServiceBus>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

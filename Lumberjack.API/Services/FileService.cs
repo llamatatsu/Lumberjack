@@ -7,7 +7,7 @@ namespace Lumberjack.API.Services
     {
         private readonly string _internalFilePath;
 
-        public FileService( IConfiguration configuration)
+        public FileService(IConfiguration configuration)
         {
             _internalFilePath = configuration["FileSettings:InternalFilePath"];
         }
@@ -15,7 +15,7 @@ namespace Lumberjack.API.Services
         public async Task<(string, string)> StoreFile(IFormFile formFile)
         {
             try 
-            { 
+            {
                 var folderName = DateTime.Now.ToString("yyyyMMdd");
                 var logDirectory = Path.Combine(_internalFilePath, folderName);
 

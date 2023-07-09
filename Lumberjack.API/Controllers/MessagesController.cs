@@ -19,19 +19,22 @@ namespace Lumberjack.API.Controllers
         private readonly ILumberjackRepository _lumberjackRepository;
         private readonly IFileService _fileService;
         private readonly IMapper _mapper;
+        private readonly IForkliftServiceBus _forkliftServiceBus;
         private const int maxMessagesPageSize = 20;
 
         public MessagesController(ILogger<MessagesController> logger,
                                     IMailService mailService,
                                     ILumberjackRepository lumberjackRepository,
                                     IFileService fileService,
-                                    IMapper mapper)
+                                    IMapper mapper,
+                                    IForkliftServiceBus forkliftServiceBus)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _mailService = mailService ?? throw new ArgumentNullException(nameof(mailService));
             _lumberjackRepository = lumberjackRepository ?? throw new ArgumentNullException(nameof(lumberjackRepository));
             _fileService = fileService ?? throw new ArgumentNullException(nameof(fileService));
-            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));            
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _forkliftServiceBus = forkliftServiceBus ?? throw new ArgumentNullException(nameof(forkliftServiceBus));
         }
 
 
@@ -129,8 +132,10 @@ namespace Lumberjack.API.Controllers
 
                 await _lumberjackRepository.SaveChangesAsync();
 
-                var createdMessageToReturn = _mapper.Map<MessageWithSegmentsDto>(finalMessage);
+                // Erites Messages to the Service Bus
+                await _forkliftServiceBus.WriteMessageToServiceBus(finalMessage);
 
+                var createdMessageToReturn = _mapper.Map<MessageWithSegmentsDto>(finalMessage);
                 return CreatedAtRoute("GetMessage",
                                         new
                                         {
