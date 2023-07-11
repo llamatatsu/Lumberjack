@@ -8,8 +8,6 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Lumberjack.API.Utilities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Azure;
-using Azure.Messaging.ServiceBus;
 
 Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
