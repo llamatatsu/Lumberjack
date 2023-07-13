@@ -49,9 +49,10 @@ To handle large datasets, pagination is implemented in the API. It allows client
 
 To get started with this project, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/your-username/your-repo.git`
-2. Navigate to the project directory: `cd Lumberjack.API`
-3. Configure the SQL database connection string and Azure Service Bus settings in the appropriate configuration files.
+1. Create Lumberjack DB using the script in Artifacts folder
+2. Clone the repository: `git clone https://github.com/your-username/your-repo.git`
+3. Navigate to the project directory: `cd Lumberjack.API`
+4. Configure the SQL database connection string and Azure Service Bus settings in the appropriate configuration files.
 4. Build and run the project: `dotnet run`
 
 
